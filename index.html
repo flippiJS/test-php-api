@@ -46,7 +46,6 @@
             <h2>Probá tu API</h2>
             <p class="lead">Valida tus ejercicios.</p>
          </div>
-
          <div class="row g-3">
             <div class="col-md-5 col-lg-4 order-md-last">
                <h4 class="d-flex justify-content-between align-items-center mb-3">
@@ -93,8 +92,8 @@
                <form class="needs-validation" novalidate>
                   <div class="row g-3">
                      <div class="col-12">
-                        <label for="firstName" class="form-label">URL API</label>
-                        <input type="text" class="form-control" id="firstName"
+                        <label for="url" class="form-label">URL API</label>
+                        <input type="text" class="form-control" id="iUrl"
                            placeholder="http://mi-api.herokuapp.com/api/ejercicio1" value="" required>
                         <div class="invalid-feedback">
                            URL es requerida.
@@ -103,7 +102,7 @@
                      <div class="col-12">
                         <div class="input-group">
                            <span class="input-group-text">Headers</span>
-                           <textarea class="form-control"
+                           <textarea id="iHeaders" class="form-control"
                               placeholder="{&quot;Content-type&quot;: &quot;application/json&quot;} (opcional)"
                               aria-label="With textarea"></textarea>
                         </div>
@@ -111,13 +110,13 @@
                      <div class="col-12">
                         <div class="input-group">
                            <span class="input-group-text">Payload</span>
-                           <textarea class="form-control" placeholder="{&quot;valor&quot;: &quot;2&quot;} (opcional)"
+                           <textarea id="iPayload" class="form-control" placeholder="{&quot;valor&quot;: &quot;2&quot;} (opcional)"
                               aria-label="With textarea"></textarea>
                         </div>
                      </div>
                      <div class="col-md-6">
                         <label for="country" class="form-label">Método HTTP</label>
-                        <select class="form-select" id="country" required>
+                        <select class="form-select" id="iMethod" required>
                            <option value="">Elegir...</option>
                            <option>GET</option>
                            <option>POST</option>
@@ -130,7 +129,7 @@
                      </div>
                      <div class="col-md-6">
                         <label for="state" class="form-label">Ejercicio</label>
-                        <select class="form-select" id="state" required>
+                        <select class="form-select" id="iExercise" required>
                            <option value="">Elegir...</option>
                            <option>Ejercicio Nº1</option>
                         </select>
@@ -144,7 +143,7 @@
                      <span class="text-muted">Ejecutar</span>
                      <span class="badge bg-secondary rounded-pill">2</span>
                   </h4>
-                  <button class="w-100 btn btn-dark btn-lg" type="submit">Probar API</button>
+                  <button id="iAction" class="w-100 btn btn-dark btn-lg" onclick="app.getUserInput()">Probar API</button>
                </form>
             </div>
          </div>

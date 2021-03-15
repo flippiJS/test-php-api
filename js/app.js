@@ -1,14 +1,14 @@
 var app = new function () {
     this.url = '';
     this.method = 'GET';
-    this.headers = {};
+    this.headers = [];
     this.payload = {};
     this.response = {};
 
     // Metodo generico para reutilizar llamada
-    this.httpService = function (path, method, data, callback) {
+    this.httpService = function (callback) {
         var xhr = new XMLHttpRequest();
-        xhr.open(method, this.URL + path, true);
+        xhr.open(this.method, this.url.trim(), true);
         xhr.responseType = 'json';
         xhr.setRequestHeader('Content-type', 'application/json');
         xhr.onload = function () {
@@ -19,19 +19,27 @@ var app = new function () {
                 callback(status, xhr.response);
             }
         };
-        xhr.send(data);
+        xhr.send(this.payload);
     };
 
     // Hacemos la llamada para obtener las respuesta
     this.doRequest = function () {
         that = this; // Guardamos scope
         showLoading(true);
-        this.httpService(this.url, this.method, null, function (err, data) {
+        this.httpService(function (err, data) {
             showLoading(false);
             that.response = data;
+            console.log(err, data);
         });
     };
 
+    this.getUserInput = function () {
+        this.url = document.getElementById("iUrl").value || '';
+        this.method = document.getElementById("iMethod").value || 'GET';
+        this.headers = document.getElementById("iHeaders").value || [];
+        this.payload = document.getElementById("iPayload").value || {};
+        if (this.url !== '') this.doRequest();
+    };
 
     this.onAbrirPopUp = function (item) {
         MostrarEditar();
