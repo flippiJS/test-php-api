@@ -33,11 +33,6 @@
 
 <body class="bg-light">
    <div class="container">
-      <div id="loading" class="d-flex justify-content-center d-none">
-         <div class="spinner-border" role="status">
-            <span class="visually-hidden">Cargando...</span>
-         </div>
-      </div>
       <main>
          <div class="py-5 text-center">
             <img class="d-block mx-auto mb-4"
@@ -89,7 +84,7 @@
                   <span class="text-muted">Configurar</span>
                   <span class="badge bg-secondary rounded-pill">1</span>
                </h4>
-               <form class="needs-validation" novalidate>
+               <form class="needs-validation" action="javascript:void(0);" novalidate>
                   <div class="row g-3">
                      <div class="col-12">
                         <label for="url" class="form-label">URL API</label>
@@ -110,18 +105,18 @@
                      <div class="col-12">
                         <div class="input-group">
                            <span class="input-group-text">Payload</span>
-                           <textarea id="iPayload" class="form-control" placeholder="{&quot;valor&quot;: &quot;2&quot;} (opcional)"
+                           <textarea id="iPayload" class="form-control"
+                              placeholder="{&quot;valor&quot;: &quot;2&quot;} (opcional)"
                               aria-label="With textarea"></textarea>
                         </div>
                      </div>
                      <div class="col-md-6">
                         <label for="country" class="form-label">Método HTTP</label>
                         <select class="form-select" id="iMethod" required>
-                           <option value="">Elegir...</option>
-                           <option>GET</option>
-                           <option>POST</option>
-                           <option>PUT</option>
-                           <option>DELETE</option>
+                           <option value="GET">GET</option>
+                           <option value="POST">POST</option>
+                           <option value="PUT">PUT</option>
+                           <option value="DELETE">DELETE</option>
                         </select>
                         <div class="invalid-feedback">
                            Metodo es requerido.
@@ -130,8 +125,8 @@
                      <div class="col-md-6">
                         <label for="state" class="form-label">Ejercicio</label>
                         <select class="form-select" id="iExercise" required>
-                           <option value="">Elegir...</option>
-                           <option>Ejercicio Nº1</option>
+                           <option value="e1">Ejercicio Nº1</option>
+                           <option value="e2">Ejercicio Nº2</option>
                         </select>
                         <div class="invalid-feedback">
                            Ejercicio es requerido.
@@ -143,8 +138,14 @@
                      <span class="text-muted">Ejecutar</span>
                      <span class="badge bg-secondary rounded-pill">2</span>
                   </h4>
-                  <button id="iAction" class="w-100 btn btn-dark btn-lg" onclick="app.getUserInput()">Probar API</button>
+                  <button id="iAction" class="w-100 btn btn-dark btn-lg" onclick="app.getUserInput()">Probar
+                     API</button>
                </form>
+               <div id="iLoading" class="d-flex justify-content-center d-none">
+                  <div class="spinner-border" role="status">
+                     <span class="visually-hidden">Cargando...</span>
+                  </div>
+               </div>
             </div>
          </div>
       </main>

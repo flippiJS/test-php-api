@@ -19,6 +19,9 @@ var app = new function () {
                 callback(status, xhr.response);
             }
         };
+        xhr.onerror = function(e) {
+            callback(e.target.status, null);
+        };
         xhr.send(this.payload);
     };
 
@@ -68,10 +71,14 @@ function cleanInputs() {
 
 function showLoading(bool) {
     if (bool) {
-        document.getElementById('loading').classList.remove("d-none");
-        document.getElementById('loading').classList.add("d-block");
+        document.getElementById('iAction').classList.add("d-none");
+        document.getElementById('iAction').classList.remove("d-block");
+        document.getElementById('iLoading').classList.remove("d-none");
+        document.getElementById('iLoading').classList.add("d-block");
     } else {
-        document.getElementById('loading').classList.remove("d-block");
-        document.getElementById('loading').classList.add("d-none");
+        document.getElementById('iAction').classList.add("d-block");
+        document.getElementById('iAction').classList.remove("d-none");
+        document.getElementById('iLoading').classList.remove("d-block");
+        document.getElementById('iLoading').classList.add("d-none");
     }
 }
