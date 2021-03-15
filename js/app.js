@@ -4,6 +4,7 @@ var app = new function () {
     this.headers = [];
     this.payload = {};
     this.response = {};
+    this.error = {};
 
     // Metodo generico para reutilizar llamada
     this.httpService = function (callback) {
@@ -14,12 +15,12 @@ var app = new function () {
         xhr.onload = function () {
             var status = xhr.status;
             if (status === 200) {
-                callback(null, xhr.response);
+                callback(null, xhr.response, xhr);
             } else {
-                callback(status, xhr.response);
+                callback(status, xhr.response, xhr);
             }
         };
-        xhr.onerror = function(e) {
+        xhr.onerror = function (e) {
             callback(e.target.status, null);
         };
         xhr.send(this.payload);
@@ -29,10 +30,12 @@ var app = new function () {
     this.doRequest = function () {
         that = this; // Guardamos scope
         showLoading(true);
-        this.httpService(function (err, data) {
+        this.httpService(function (err, data, xhr) {
             showLoading(false);
             that.response = data;
+            that.error = err;
             console.log(err, data);
+            that.processResponse(err, data, xhr);
         });
     };
 
@@ -43,6 +46,13 @@ var app = new function () {
         this.payload = document.getElementById("iPayload").value || {};
         if (this.url !== '') this.doRequest();
     };
+
+    this.processResponse = function (err, data, xhr) {
+        console.log(xhr);
+        if(xhr && xhr.status) document.getElementById("iStatus").innerHTML = xhr.status;
+        if(xhr && xhr.response) document.getElementById("iBody").innerHTML = JSON.stringify(xhr.response);
+
+    }
 
     this.onAbrirPopUp = function (item) {
         MostrarEditar();

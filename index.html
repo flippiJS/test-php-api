@@ -53,14 +53,14 @@
                         <h6 class="my-0">Status Code</h6>
                         <small class="text-muted">Estado HTTP de la petición</small>
                      </div>
-                     <strong class="text-success">200</strong>
+                     <strong id="iStatus" class="text-success">-</strong>
                   </li>
                   <li class="list-group-item d-flex justify-content-between lh-sm">
                      <div>
                         <h6 class="my-0">Response Headers</h6>
                         <small class="text-muted">Cabeceras de la respuesta</small>
                         <div>
-                           <code>{"Content-type":"application/json"}</code>
+                           <code id="iRHeader">-</code>
                         </div>
                      </div>
                   </li>
@@ -69,13 +69,13 @@
                         <h6 class="my-0">Response Body</h6>
                         <small class="text-muted">Cuerpo de la respuesta</small>
                         <div>
-                           <code>{"respuesta":"ok"}</code>
+                           <code id="iBody">-</code>
                         </div>
                      </div>
                   </li>
                   <li class="list-group-item d-flex justify-content-between">
                      <span>Resultado esperado</span>
-                     <strong class="text-success">OK</strong>
+                     <strong class="text-success">-</strong>
                   </li>
                </ul>
             </div>
