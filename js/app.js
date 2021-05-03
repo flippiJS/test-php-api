@@ -56,6 +56,7 @@ var app = new function () {
         that = this; // Guardamos scope
         if(xhr && xhr.status) document.getElementById("iStatus").innerHTML = xhr.status;
         if(xhr && xhr.status === 0) document.getElementById("iStatus").innerHTML = xhr.status;
+	if(xhr) document.getElementById("iRHeader").innerHTML = JSON.stringify(getResponseHeaderMap(xhr), undefined, 4);
         if(xhr && xhr.response) document.getElementById("iBody").innerHTML = JSON.stringify(xhr.response, undefined, 4);
         if(xhr && xhr.response && isJSON(xhr.response)) that.jsonViewer.showJSON(xhr.response);
     }
@@ -101,8 +102,8 @@ function showLoading(bool) {
 
 function isJSON(str){
     try {
-        var strJSON = JSON.stringify(str);
-        var json = JSON.parse(strJSON);
+        const strJSON = JSON.stringify(str);
+        const json = JSON.parse(strJSON);
         if(typeof(str) == 'string')
             if(str.length == 0)
                 return false;
@@ -111,4 +112,16 @@ function isJSON(str){
         return false;
     }
     return true;
+}
+
+function getResponseHeaderMap(xhr) {
+  const headers = {};
+  xhr.getAllResponseHeaders()
+      .trim()
+      .split(/[\r\n]+/)
+      .map(value => value.split(/: /))
+      .forEach(keyValue => {
+        headers[keyValue[0].trim()] = keyValue[1].trim();
+      });
+  return headers;
 }
