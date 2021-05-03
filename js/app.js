@@ -56,7 +56,7 @@ var app = new function () {
         that = this; // Guardamos scope
         if(xhr && xhr.status) document.getElementById("iStatus").innerHTML = xhr.status;
         if(xhr && xhr.status === 0) document.getElementById("iStatus").innerHTML = xhr.status;
-	if(xhr) document.getElementById("iRHeader").innerHTML = JSON.stringify(getResponseHeaderMap(xhr), undefined, 4);
+	if(xhr) document.getElementById("iRHeader").innerHTML = xhr.getAllResponseHeaders();
         if(xhr && xhr.response) document.getElementById("iBody").innerHTML = JSON.stringify(xhr.response, undefined, 4);
         if(xhr && xhr.response && isJSON(xhr.response)) that.jsonViewer.showJSON(xhr.response);
     }
