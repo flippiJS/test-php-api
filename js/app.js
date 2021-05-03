@@ -57,7 +57,7 @@ var app = new function () {
         if(xhr && xhr.status) document.getElementById("iStatus").innerHTML = xhr.status;
         if(xhr && xhr.status === 0) document.getElementById("iStatus").innerHTML = xhr.status;
         if(xhr && xhr.response) document.getElementById("iBody").innerHTML = JSON.stringify(xhr.response, undefined, 4);
-        if(xhr && xhr.response) that.jsonViewer.showJSON(xhr.response);
+        if(xhr && xhr.response && isJSON(xhr.response)) that.jsonViewer.showJSON(xhr.response);
     }
 
     this.onAbrirPopUp = function (item) {
@@ -97,4 +97,18 @@ function showLoading(bool) {
         document.getElementById('iLoading').classList.remove("d-block");
         document.getElementById('iLoading').classList.add("d-none");
     }
+}
+
+function isJSON(str){
+    try {
+        var strJSON = JSON.stringify(str);
+        var json = JSON.parse(strJSON);
+        if(typeof(str) == 'string')
+            if(str.length == 0)
+                return false;
+    }
+    catch(e){
+        return false;
+    }
+    return true;
 }
