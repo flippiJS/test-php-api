@@ -59,7 +59,7 @@ var app = new function () {
         that = this; // Guardamos scope
         if(xhr && xhr.status) document.getElementById("iStatus").innerHTML = xhr.status;
         if(xhr && xhr.status === 0) document.getElementById("iStatus").innerHTML = xhr.status;
-	if(xhr && isJSON(getResponseHeaderMap(xhr))) that.jsonViewerH.showJSON(getResponseHeaderMap(xhr));
+	if(xhr && && xhr.status > 0 && isJSON(getResponseHeaderMap(xhr))) that.jsonViewerH.showJSON(getResponseHeaderMap(xhr));
         if(xhr && xhr.response) document.getElementById("iBody").innerHTML = JSON.stringify(xhr.response, undefined, 4);
         if(xhr && xhr.response && isJSON(xhr.response)) that.jsonViewer.showJSON(xhr.response);
     }
