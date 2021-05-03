@@ -36,6 +36,7 @@ var app = new function () {
     // Hacemos la llamada para obtener las respuesta
     this.doRequest = function () {
         that = this; // Guardamos scope
+	this.cleanInputs();
         showLoading(true);
         this.httpService(function (err, data, xhr) {
             showLoading(false);
@@ -62,6 +63,14 @@ var app = new function () {
 	if(xhr && xhr.status > 0 && isJSON(getResponseHeaderMap(xhr))) that.jsonViewerH.showJSON(getResponseHeaderMap(xhr));
         if(xhr && xhr.response) document.getElementById("iBody").innerHTML = JSON.stringify(xhr.response, undefined, 4);
         if(xhr && xhr.response && isJSON(xhr.response)) that.jsonViewer.showJSON(xhr.response);
+    }
+	
+    this.cleanInputs = function () {
+	document.getElementById("iStatus").innerHTML = '';
+        document.getElementById("iRHeader").innerHTML = '';
+        document.getElementById("iBody").innerHTML = '';
+	this.jsonViewer.showJSON({});
+	this.jsonViewerH.showJSON({});
     }
 
     this.onAbrirPopUp = function (item) {
