@@ -8,7 +8,7 @@ var app = new function () {
     
     // Json visor
     this.jsonViewer = new JSONViewer();
-	document.getElementById("iBodyFormated").appendChild(jsonViewer.getContainer());
+	document.getElementById("iBodyFormated").appendChild(this.jsonViewer.getContainer());
 
     // Metodo generico para reutilizar llamada
     this.httpService = function (callback) {
