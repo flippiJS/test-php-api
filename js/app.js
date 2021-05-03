@@ -8,7 +8,10 @@ var app = new function () {
     
     // Json visor
     this.jsonViewer = new JSONViewer();
-	document.getElementById("iBodyFormated").appendChild(this.jsonViewer.getContainer());
+    document.getElementById("iBodyFormated").appendChild(this.jsonViewer.getContainer());
+	
+    this.jsonViewerH = new JSONViewer();
+    document.getElementById("iRHeaderFormated").appendChild(this.jsonViewerH.getContainer());
 
     // Metodo generico para reutilizar llamada
     this.httpService = function (callback) {
@@ -56,7 +59,7 @@ var app = new function () {
         that = this; // Guardamos scope
         if(xhr && xhr.status) document.getElementById("iStatus").innerHTML = xhr.status;
         if(xhr && xhr.status === 0) document.getElementById("iStatus").innerHTML = xhr.status;
-	if(xhr) document.getElementById("iRHeader").innerHTML = xhr.getAllResponseHeaders();
+	if(xhr && isJSON(getResponseHeaderMap(xhr))) that.jsonViewerH.showJSON(getResponseHeaderMap(xhr));
         if(xhr && xhr.response) document.getElementById("iBody").innerHTML = JSON.stringify(xhr.response, undefined, 4);
         if(xhr && xhr.response && isJSON(xhr.response)) that.jsonViewer.showJSON(xhr.response);
     }
