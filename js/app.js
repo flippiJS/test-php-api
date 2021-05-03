@@ -51,7 +51,7 @@ var app = new function () {
         console.log(xhr);
         if(xhr && xhr.status) document.getElementById("iStatus").innerHTML = xhr.status;
         if(xhr && xhr.status === 0) document.getElementById("iStatus").innerHTML = xhr.status;
-        if(xhr && xhr.response) document.getElementById("iBody").innerHTML = JSON.stringify(xhr.response);
+        if(xhr && xhr.response) document.getElementById("iBody").innerHTML = JSON.stringify(xhr.response, undefined, 4);
     }
 
     this.onAbrirPopUp = function (item) {
